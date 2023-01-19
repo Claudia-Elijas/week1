@@ -41,3 +41,9 @@ def sort(arr0):
         aso[j] = mi
         arr0 = np.delete(arr0,ind)
     return aso
+
+
+#testing our sorting algorithm
+a = makearr(0, 150, 5)
+b = sort(a)
+print(a,b)
