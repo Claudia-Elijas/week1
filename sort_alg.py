@@ -1,6 +1,6 @@
+import time
 import numpy as np
 #Define function that creates an array of random numbers within a range and of a given length
-
 def makearr(st, en, ra):
     '''Input:
         st = lowest number that our array could have
@@ -34,12 +34,20 @@ def find_min(arr):
 
 #Defining a sorting function
 def sort(arr0):
+    '''Input: unsorted array
+       Output: sorted array
+    '''
+    #obtain length of array
     r = len(arr0)
+    #create the new future sorted array
     aso = [0]*r
     for j in range(r):
+        #find minimum of the original array r times
         mi, ind = find_min(arr0)
+        #assign the minimum value of that iteration to the index j of the sorted array
         aso[j] = mi
-        arr0 = np.delete(arr0,ind)
+        #delete that index from the original array 
+        arr0 = np.delete(arr0,ind)       
     return aso
 
 
@@ -47,3 +55,14 @@ def sort(arr0):
 a = makearr(0, 150, 5)
 b = sort(a)
 print(a,b)
+
+#comparing the runtime between our sorting algorithm and python's ibuilt one
+t0 = time.perf_counter()
+b = sort(a)
+t0 = time.perf_counter()-t0
+
+t1 = time.perf_counter()
+c = np.sort(a)
+t1 = time.perf_counter()-t1
+
+print("Our function takes "+str(t0)+"s. Python's inbuilt sort function takes "+str(t1)+"s.")
